@@ -1,0 +1,20 @@
+.DS_Store
+node_modules/
+dist/
+build/
+coverage/
+.coverage
+.pytest_cache/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+target/
+tmp/
+*.log
+
+# Claude Code local-only artifacts
+.claude/settings.local.json

@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+ran=0
+
+if [[ -f package.json ]]; then
+  if npm run | grep -qE '^  lint$'; then
+    npm run lint
+    ran=1
+  fi
+  if npm run | grep -qE '^  typecheck$'; then
+    npm run typecheck
+    ran=1
+  fi
+  if npm run | grep -qE '^  test$'; then
+    npm test
+    ran=1
+  fi
+fi
+
+if [[ -f pyproject.toml ]]; then
+  if command -v ruff >/dev/null 2>&1; then
+    ruff check .
+    ran=1
+  fi
+  if command -v mypy >/dev/null 2>&1; then
+    mypy .
+    ran=1
+  fi
+  if command -v pytest >/dev/null 2>&1; then
+    pytest
+    ran=1
+  fi
+elif [[ -d tests ]] && command -v pytest >/dev/null 2>&1; then
+  pytest
+  ran=1
+fi
+
+if [[ -f Cargo.toml ]]; then
+  cargo fmt --check
+  cargo clippy --all-targets --all-features -- -D warnings
+  cargo test
+  ran=1
+fi
+
+if [[ "$ran" -eq 0 ]]; then
+  echo "No known checks found. Harness files are present."
+fi
