@@ -18,14 +18,16 @@ It is intentionally language-agnostic — extend it as a concrete stack is added
 ## Repository Layout
 
 - `CLAUDE.md`: This file. Project-level instructions auto-loaded by Claude Code.
+- `CLAUDE.local.md`: Optional personal overrides (git-ignored). Not required.
 - `README.md`: Human-facing overview and workflow.
-- `docs/`: Project notes and decisions.
+- `docs/`: Project notes, decisions, and reference links.
 - `scripts/`: Stable automation entrypoints (`bootstrap`, `check`, `test`).
 - `tasks/`: Task briefs and working notes — start from `tasks/TEMPLATE.md`.
 - `.claude/`: Claude Code project configuration.
-  - `settings.json`: Shared, checked-in settings (permissions, env, hooks).
+  - `settings.json`: Shared, checked-in settings (permissions, hooks).
   - `settings.local.json`: Personal overrides (git-ignored).
   - `commands/`: Project slash commands.
+  - `hooks/`: Lifecycle scripts (session start, stop, etc.).
   - `agents/`: Project sub-agents.
 
 ## Standard Commands
@@ -45,4 +47,11 @@ Before finishing a task:
 
 1. Confirm the requested change is implemented.
 2. Run the narrowest useful verification command, usually `scripts/check`.
+   The `Stop` hook also runs `scripts/check` automatically and will block the
+   session end if it fails — so failures get surfaced and fixed, not hidden.
 3. Report changed files and any verification that could not be run.
+
+## Further Reading
+
+See `docs/references.md` for links to Anthropic's official Claude Code docs
+(hooks, permissions, sub-agents, settings).

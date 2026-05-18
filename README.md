@@ -37,7 +37,14 @@ them as the project grows.
 ## Claude Code Integration
 
 - `CLAUDE.md` is loaded automatically as project context for every Claude Code session.
-- `.claude/settings.json` holds project-shared settings (permissions, env, hooks) that are checked in.
+- `CLAUDE.local.md` (git-ignored) holds personal overrides.
+- `.claude/settings.json` holds project-shared settings (permissions, hooks) that are checked in.
 - `.claude/settings.local.json` holds your personal overrides and is git-ignored.
-- `.claude/commands/` can hold project-scoped slash commands.
-- `.claude/agents/` can hold project-scoped sub-agents.
+- `.claude/commands/` holds project-scoped slash commands.
+- `.claude/hooks/` holds lifecycle scripts. The defaults are:
+  - `session-start-context` — injects branch + uncommitted state + open task notes when interesting.
+  - `stop-check` — runs `scripts/check` before session end and blocks on failure.
+- `.claude/agents/` can hold project-scoped sub-agents (none ship by default).
+- `.github/pull_request_template.md` aligns PR descriptions with the verification checklist Claude follows.
+
+See `docs/references.md` for upstream Claude Code documentation.

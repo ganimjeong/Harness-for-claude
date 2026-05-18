@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Stop hook: run scripts/check before the session ends. If it fails, surface
+# the output and block the stop so Claude can fix issues before handing back.
+#
+# Exit codes:
+#   0  -> check passed (or no checks defined) — session ends normally.
+#   2  -> check failed — Claude sees stderr and is prompted to fix.
+#
+# To make this advisory instead of blocking, change `exit 2` below to `exit 0`.
+set -uo pipefail
+
+cd "${CLAUDE_PROJECT_DIR:-$(dirname "$0")/../..}" || exit 0
+
+[[ -x scripts/check ]] || exit 0
+
+if ! output=$(scripts/check 2>&1); then
+  {
+    echo "scripts/check failed — fix issues before finishing:"
+    echo "$output"
+  } >&2
+  exit 2
+fi
+
+exit 0
