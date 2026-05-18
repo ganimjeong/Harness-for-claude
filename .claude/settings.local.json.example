@@ -1,0 +1,8 @@
+{
+  "_comment": "Copy this file to settings.local.json (git-ignored) to opt into personal preferences. Examples below — uncomment what you want.",
+
+  "statusLine": {
+    "type": "command",
+    "command": "jq -r '\"\\(.model.display_name) · \\(.workspace.current_dir | split(\"/\") | last)\"'"
+  }
+}

@@ -1,30 +1,35 @@
 #!/usr/bin/env bash
 # SessionStart hook: emit brief repo context only when state is interesting.
-# Output goes to stdout and is injected into the session as additional context.
+# Output goes to stdout and is injected into the session as additional context,
+# so every line costs context-window tokens — output is capped at 30 lines.
 set -uo pipefail
 
 cd "${CLAUDE_PROJECT_DIR:-$(dirname "$0")/../..}" || exit 0
 
 [[ -d .git ]] || exit 0
 
-branch=$(git branch --show-current 2>/dev/null || true)
-changes=$(git status --porcelain 2>/dev/null | head -20)
+emit() {
+  branch=$(git branch --show-current 2>/dev/null || true)
+  changes=$(git status --porcelain 2>/dev/null | head -15)
 
-if [[ -n "$changes" ]] || { [[ -n "$branch" ]] && [[ "$branch" != "main" ]]; }; then
-  echo "## Repository state"
-  [[ -n "$branch" ]] && echo "- Branch: \`$branch\`"
-  if [[ -n "$changes" ]]; then
-    echo "- Uncommitted changes:"
-    while IFS= read -r line; do
-      echo "    $line"
-    done <<< "$changes"
+  if [[ -n "$changes" ]] || { [[ -n "$branch" ]] && [[ "$branch" != "main" ]]; }; then
+    echo "## Repository state"
+    [[ -n "$branch" ]] && echo "- Branch: \`$branch\`"
+    if [[ -n "$changes" ]]; then
+      echo "- Uncommitted changes:"
+      while IFS= read -r line; do
+        echo "    $line"
+      done <<< "$changes"
+    fi
   fi
-fi
 
-task_files=$(find tasks -maxdepth 1 -name '*.md' ! -name 'TEMPLATE.md' 2>/dev/null | sort)
-if [[ -n "$task_files" ]]; then
-  echo "## Open task notes"
-  while IFS= read -r f; do echo "- $f"; done <<< "$task_files"
-fi
+  task_files=$(find tasks -maxdepth 1 -name '*.md' ! -name 'TEMPLATE.md' 2>/dev/null | sort)
+  if [[ -n "$task_files" ]]; then
+    echo "## Open task notes"
+    while IFS= read -r f; do echo "- $f"; done <<< "$task_files"
+  fi
+}
+
+emit | head -n 30
 
 exit 0

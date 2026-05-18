@@ -21,6 +21,8 @@
       "Read(**/.env)",
       "Read(**/.env.*)",
       "Read(**/secrets/**)",
+      "Bash(*$(*)*)",
+      "Bash(*`*`*)",
       "Bash(git push --force*)",
       "Bash(git push -f *)"
     ]

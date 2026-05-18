@@ -2,12 +2,22 @@
 # Stop hook: run scripts/check before the session ends. If it fails, surface
 # the output and block the stop so Claude can fix issues before handing back.
 #
+# Anti-loop guard: if the JSON input has `stop_hook_active: true`, we've
+# already blocked once for this turn — exit 0 to avoid an infinite retry
+# loop on a failure Claude can't fix. See:
+# https://code.claude.com/docs/en/hooks
+#
 # Exit codes:
-#   0  -> check passed (or no checks defined) — session ends normally.
+#   0  -> check passed, no checks defined, or already blocked once this turn.
 #   2  -> check failed — Claude sees stderr and is prompted to fix.
 #
-# To make this advisory instead of blocking, change `exit 2` below to `exit 0`.
+# To make this advisory only, change `exit 2` below to `exit 0`.
 set -uo pipefail
+
+input=$(cat)
+if grep -q '"stop_hook_active"[[:space:]]*:[[:space:]]*true' <<< "$input"; then
+  exit 0
+fi
 
 cd "${CLAUDE_PROJECT_DIR:-$(dirname "$0")/../..}" || exit 0
 

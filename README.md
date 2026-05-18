@@ -4,7 +4,7 @@ A minimal repository harness for Claude Code-driven work.
 
 The goal is to give every future task a predictable starting point:
 
-- one place for agent instructions (`CLAUDE.md`)
+- one place for agent instructions (`AGENTS.md`, mirrored as `CLAUDE.md`)
 - one bootstrap command
 - one check command
 - one test command
@@ -34,12 +34,24 @@ scripts/check
 These scripts are safe defaults for an empty or early-stage repository. Extend
 them as the project grows.
 
+## Agent Configuration
+
+`AGENTS.md` is the canonical agent guide (the cross-tool spec used by Codex,
+Cursor, Aider, and others). `CLAUDE.md` is a symlink to `AGENTS.md` so Claude
+Code reads the same content. **Edit `AGENTS.md` only.**
+
+> Windows note: git stores the symlink with mode `120000`. On Windows checkouts
+> the symlink works only with `git config --global core.symlinks true` and
+> Developer Mode (or admin) enabled — otherwise `CLAUDE.md` appears as a plain
+> text file containing the string `AGENTS.md`. If that's a problem for your
+> team, replace the symlink with a copy and add a pre-commit hook to sync them.
+
 ## Claude Code Integration
 
-- `CLAUDE.md` is loaded automatically as project context for every Claude Code session.
+- `AGENTS.md` / `CLAUDE.md` are loaded automatically as project context for every Claude Code session.
 - `CLAUDE.local.md` (git-ignored) holds personal overrides.
 - `.claude/settings.json` holds project-shared settings (permissions, hooks) that are checked in.
-- `.claude/settings.local.json` holds your personal overrides and is git-ignored.
+- `.claude/settings.local.json` holds your personal overrides and is git-ignored. See `.claude/settings.local.json.example` for a starter (statusLine, etc.).
 - `.claude/commands/` holds project-scoped slash commands.
 - `.claude/hooks/` holds lifecycle scripts. The defaults are:
   - `session-start-context` — injects branch + uncommitted state + open task notes when interesting.
