@@ -8,6 +8,31 @@ Edit `AGENTS.md`; never edit `CLAUDE.md` directly.
 The repository is a baseline workspace for AI-agent-driven implementation,
 intentionally language-agnostic — extend it as a concrete stack is added.
 
+## Adopting this harness
+
+After cloning or using "Use this template" to start a new project from this
+repo, replace the artifacts that describe *this* harness (not your project):
+
+1. **`LICENSE`** — update the copyright line (`(c) 2026 ganimjeong`) to your
+   own name. Keep MIT or switch to your preferred license.
+2. **`README.md`** — rewrite for your project. The shipped README is about
+   the harness itself.
+3. **`SECURITY.md`** — update the GitHub security advisory URL to point at
+   your repo.
+4. **`.github/social-preview.png`** and **`.github/social-preview.svg`** —
+   regenerate or delete. The PNG is generated from the SVG via
+   `qlmanage -t -s 1280 -o .github/ .github/social-preview.svg` on macOS;
+   center-crop the 1280×1280 output to 1280×640 with
+   `sips --cropToHeightWidth 640 1280 input.png --out output.png`.
+5. **`.github/ISSUE_TEMPLATE/`** — keep, remove, or tailor to your project's
+   triage flow.
+6. **`CONTRIBUTING.md`** — the shipped version describes harness scope rules
+   ("no Docker, no bundled MCP"); replace with rules that fit your project.
+
+Everything in `.claude/`, `scripts/`, `docs/decisions.md`, `tasks/TEMPLATE.md`,
+and the `AGENTS.md` operating principles is intended to be kept as-is and
+extended. That's the actual harness.
+
 ## Operating Principles
 
 - Read the repository before editing. Prefer existing conventions over new ones.

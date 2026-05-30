@@ -25,6 +25,15 @@ isn't. It ships only the conventions every project needs:
 
 If you've ever opened a fresh repo and asked an agent "where do I even start?" — this answers that.
 
+## Using this as a template
+
+GitHub's **"Use this template"** button (or a plain clone) copies every file
+in this repo — including `LICENSE`, `README.md`, `SECURITY.md`, and the
+social preview image, which describe the harness itself, not your project.
+After adopting, replace those artifacts. See the
+[Adopting this harness](./AGENTS.md#adopting-this-harness) checklist in
+`AGENTS.md` for the exact list.
+
 ## Quick start
 
 ```sh
