@@ -20,3 +20,6 @@ tmp/
 .claude/settings.local.json
 CLAUDE.local.md
 AGENTS.local.md
+
+# Social preview PNG is generated from the SVG; uploaded to GitHub via UI
+.github/social-preview.png

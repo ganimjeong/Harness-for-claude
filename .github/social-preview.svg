@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1280" viewBox="0 0 1280 1280">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8A2BE2"/>
+      <stop offset="1" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="1280" fill="url(#bg)"/>
+
+  <g opacity="0.06" stroke="#ffffff" stroke-width="1">
+    <path d="M0 480 H1280"/>
+    <path d="M0 640 H1280"/>
+    <path d="M0 800 H1280"/>
+    <path d="M320 320 V960"/>
+    <path d="M640 320 V960"/>
+    <path d="M960 320 V960"/>
+  </g>
+
+  <g transform="translate(80,400)">
+    <rect x="0" y="0" width="8" height="56" rx="4" fill="url(#accent)"/>
+    <text x="28" y="40" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#c9d1d9" letter-spacing="2">HARNESS FOR CLAUDE CODE</text>
+  </g>
+
+  <text x="80" y="570" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif" font-size="78" font-weight="800" fill="#ffffff" letter-spacing="-2">
+    <tspan x="80">Minimal AGENTS.md</tspan>
+    <tspan x="80" dy="92">starter for AI agents.</tspan>
+  </text>
+
+  <text x="80" y="800" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" font-weight="400" fill="#8b949e">
+    One agent guide. One bootstrap. One check. Language-agnostic.
+  </text>
+
+  <g transform="translate(80,880)" font-family="-apple-system, BlinkMacSystemFont, 'SF Mono', 'Menlo', monospace" font-size="20" fill="#c9d1d9">
+    <rect x="0" y="-24" width="150" height="38" rx="19" fill="#21262d" stroke="#30363d"/>
+    <text x="20" y="2">claude-code</text>
+
+    <rect x="162" y="-24" width="125" height="38" rx="19" fill="#21262d" stroke="#30363d"/>
+    <text x="182" y="2">AGENTS.md</text>
+
+    <rect x="299" y="-24" width="86" height="38" rx="19" fill="#21262d" stroke="#30363d"/>
+    <text x="319" y="2">Codex</text>
+
+    <rect x="397" y="-24" width="92" height="38" rx="19" fill="#21262d" stroke="#30363d"/>
+    <text x="417" y="2">Cursor</text>
+
+    <rect x="501" y="-24" width="78" height="38" rx="19" fill="#21262d" stroke="#30363d"/>
+    <text x="521" y="2">Aider</text>
+  </g>
+
+  <text x="1200" y="940" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'SF Mono', 'Menlo', monospace" font-size="19" fill="#6e7681">
+    github.com/ganimjeong/Harness-for-claude
+  </text>
+</svg>
