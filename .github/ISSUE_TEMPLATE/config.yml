@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Claude Code documentation
+    url: https://code.claude.com/docs
+    about: Questions about Claude Code itself belong with Anthropic, not this harness.
+  - name: AGENTS.md spec
+    url: https://agents.md
+    about: Questions about the cross-tool AGENTS.md format.

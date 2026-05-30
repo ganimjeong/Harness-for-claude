@@ -29,6 +29,9 @@ intentionally language-agnostic — extend it as a concrete stack is added.
 - `CLAUDE.md`: Symlink to `AGENTS.md`. Claude Code auto-loads this.
 - `CLAUDE.local.md` / `AGENTS.local.md`: Optional personal overrides (git-ignored).
 - `README.md`: Human-facing overview and workflow.
+- `LICENSE`: MIT license.
+- `CONTRIBUTING.md`: Contribution workflow and scope rules.
+- `SECURITY.md`: Vulnerability reporting policy.
 - `docs/`: Project notes, decisions, and reference links.
 - `scripts/`: Stable automation entrypoints (`bootstrap`, `check`, `test`).
 - `tasks/`: Task briefs and working notes — start from `tasks/TEMPLATE.md`.
@@ -38,6 +41,7 @@ intentionally language-agnostic — extend it as a concrete stack is added.
   - `commands/`: Project slash commands.
   - `hooks/`: Lifecycle scripts (session start, stop, etc.).
   - `agents/`: Project sub-agents.
+- `.github/`: Issue templates, PR template, CI workflow.
 
 ## Standard Commands
 
